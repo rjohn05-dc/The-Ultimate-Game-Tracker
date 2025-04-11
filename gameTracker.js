@@ -27,7 +27,7 @@ let nameMap= new Map();
 nameMap.set("Matt", randomGame());
 console.log(nameMap.get("Matt"));
 console.log(nameMap.get("Matt",storeGame(nameMap.get("Matt"))));
-
+console.log(nameMap.get("Matt"))
 
 nameMap.set("Foggy", randomGame());
 console.log(nameMap.get("Foggy"));
@@ -47,7 +47,20 @@ function storeGame(game){
     console.log("Game already exists in the list");
     return;
  }
+// will add game to players lists if game maximum is less than 4
 
+    if(nameMap.size < 4){
+        nameMap.set(game, randomGame());
+        console.log("Game added to the list");
+        return;
+    }
+
+    else if(nameMap.size >= 4){
+        console.log("Game list is full");
+        return;
+    }
+
+    
     // This else will add the random game to the players list if they don't have it already
  else{
     nameMap.set(game, randomGame());
@@ -67,7 +80,7 @@ function storeGame(game){
 //     }
 //     return totalScore / totalGames;
 // }
-
+// console.log(calcAverage());
 // This will output the games in store for each player and their score
 let results={
     Matt: {
