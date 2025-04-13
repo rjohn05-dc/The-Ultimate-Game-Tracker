@@ -18,7 +18,7 @@ function randomGame(){
     let game = games[randomIndex];
     return game;
 
-    
+     
    }
 
 
@@ -70,17 +70,8 @@ function storeGame(game){
 }
 
 
-// this will calcualte the average score for each player
-// function calcAverage(){
-//     let totalScore = 0;
-//     let totalGames = 0;
-//     for (let i = 0; i < games.length; i++){
-//         totalScore += games[i].score;
-//         totalGames++;
-//     }
-//     return totalScore / totalGames;
-// }
-// console.log(calcAverage());
+
+
 // This will output the games in store for each player and their score
 let results={
     Matt: {
