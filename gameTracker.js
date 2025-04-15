@@ -24,9 +24,9 @@ function randomGame(){
 
 
 let nameMap= new Map([
-    ["Matt", []],
-    ["Foggy", []],
-    ["Heather", []]
+    ["Matt", [randomGame(), randomGame(), randomGame()]], // Matt has 3 games
+    ["Foggy", [randomGame(), randomGame()]], // Foggy has 2 games
+    ["Heather", [randomGame(), randomGame(), randomGame()]] // Heather has 4 games
 ]);
 
 
@@ -37,24 +37,27 @@ console.log(nameMap.get("Heather",storeGame("Heather",randomGame()))); // This w
 
 
 // This function will store the game in the players game list if they don't have it already
-
+ function storeGame(){
+    if (nameMap.has(randomGame())){
+        console.log("Player already has this game");
+    }
+    else {
+        nameMap.set(randomGame(), randomGame());
+        console.log("Game stored successfully");
+    }
+ }
 let scores=[
     [300 , 600 , 900], //Matt
     [200 , 400 , 600], //Foggy
     [100 , 200 , 300] , //Heather
 ]
+// this function will select a random score from the scores array
+function score(){
+    let randomIndex = Math.floor(Math.random() * scores.length);
+    let score = scores[randomIndex];
+    return score;
+}
 
-
-// function storeScore(playerName, score) {
-//     let playerScores = nameMap.get(playerName);
-//     if (playerScores.length <=4) {
-//         playerScores.push(score);
-//         nameMap.set(playerName, playerScores);
-//     } else {
-//         console.log(`${playerName} already has 4 scores.`);
-//     }
-
-// }
 // This will output the games in store for each player and their score
 let results={
     Matt: {
@@ -73,21 +76,11 @@ let results={
 console.log(results);
 
 // This will summarize each players score and average score
-let summary = {
-    Matt: {
-        game: nameMap.get("Matt"),
-        score: 0,
-        averageScore: 0
-    },
-    Foggy: {
-        game: nameMap.get("Foggy"),
-        score: 0,
-        averageScore: 0
-    },
-    Heather: {
-        game: nameMap.get("Heather"),
-        score: 0,
-        averageScore: 0
+for(i=0; i<scores.length; i++){
+    let totalScore = 0;
+    for(j=0; j<scores[i].length; j++){
+        totalScore += scores[i][j];
     }
+    let averageScore = totalScore / scores[i].length;
+    console.log("Player " + i + " has a total score of " + totalScore + " and an average score of " + averageScore);
 }
-console.log(summary);
