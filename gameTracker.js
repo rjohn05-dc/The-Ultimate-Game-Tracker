@@ -23,55 +23,38 @@ function randomGame(){
 
 
 
-let nameMap= new Map();
-nameMap.set("Matt", randomGame());
-console.log(nameMap.get("Matt"));
-console.log(nameMap.get("Matt",storeGame(nameMap.get("Matt"))));
-console.log(nameMap.get("Matt"))
-
-nameMap.set("Foggy", randomGame());
-console.log(nameMap.get("Foggy"));
-console.log(nameMap.get("Foggy",storeGame(nameMap.get("Foggy"))));
+let nameMap= new Map([
+    ["Matt", []],
+    ["Foggy", []],
+    ["Heather", []]
+]);
 
 
-nameMap.set("Heather", randomGame());
-console.log(nameMap.get("Heather"));
-console.log(nameMap.get("Heather",storeGame(nameMap.get("Heather"))));
 
-
+console.log(nameMap.get("Matt",storeGame("Matt",randomGame()))); // This will output the game list for Matt
+console.log(nameMap.get("Foggy",storeGame("Foggy",randomGame()))); // This will output the game list for Foggy
+console.log(nameMap.get("Heather",storeGame("Heather",randomGame()))); // This will output the game list for Heather
 
 
 // This function will store the game in the players game list if they don't have it already
-function storeGame(game){
- if (nameMap.has(game)){
-    console.log("Game already exists in the list");
-    return;
- }
-// will add game to players lists if game maximum is less than 4
 
-    if(nameMap.size < 4){
-        nameMap.set(game, randomGame());
-        console.log("Game added to the list");
-        return;
-    }
-
-    else if(nameMap.size >= 4){
-        console.log("Game list is full");
-        return;
-    }
-
-    
-    // This else will add the random game to the players list if they don't have it already
- else{
-    nameMap.set(game, randomGame());
-    console.log("Game added to the list");
-    return;
- }
-}
+let scores=[
+    [300 , 600 , 900], //Matt
+    [200 , 400 , 600], //Foggy
+    [100 , 200 , 300] , //Heather
+]
 
 
+// function storeScore(playerName, score) {
+//     let playerScores = nameMap.get(playerName);
+//     if (playerScores.length <=4) {
+//         playerScores.push(score);
+//         nameMap.set(playerName, playerScores);
+//     } else {
+//         console.log(`${playerName} already has 4 scores.`);
+//     }
 
-
+// }
 // This will output the games in store for each player and their score
 let results={
     Matt: {
@@ -84,6 +67,8 @@ let results={
         game: nameMap.get("Heather"),
     }
 }
+
+
 
 console.log(results);
 
